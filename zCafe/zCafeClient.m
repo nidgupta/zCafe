@@ -8,10 +8,11 @@
 
 #import "zCafeClient.h"
 
+#define zCafeBaseUrl @"http://54.201.40.146/zcafe-api/"
 @implementation zCafeClient
 
 -(id) init{
-    self = [super initWithBaseURL:[NSURL URLWithString:@"https://yipbb.corp.zynga.com"]];
+    self = [super initWithBaseURL:[NSURL URLWithString:@"http://54.201.40.146/"]];
     if(self){
         [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
     }
@@ -23,7 +24,8 @@
     NSStringEncoding *encoding = NULL;
     NSError *error;
     
-    NSURL *url = [NSURL URLWithString:@"https://yipbb.corp.zynga.com/zcafe-api/menu.json"];
+    NSString* finalUrl = [NSString stringWithFormat:@"%@%@",zCafeBaseUrl,@"menu.json"];
+    NSURL *url = [NSURL URLWithString:finalUrl];
     NSString *result = [[NSString alloc] initWithContentsOfURL:url usedEncoding:encoding error:&error];
     NSData *jsonData = [result dataUsingEncoding:NSUTF8StringEncoding];
     //
@@ -32,30 +34,18 @@
     NSLog(@"jsonList: %@", menuItemList);
 
     return menuItemList;
-//    [self getPath:@"/zcafe-api/menu.json" parameters:@{@"UDID":@"Nidhi"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"success block : %@", responseObject);
-//        
-//        if([responseObject isKindOfClass:[NSString class]]){
-//            NSLog(@"yes it is string");
-//        }
-//        if([responseObject isKindOfClass:[NSData class]]){
-//            NSLog(@"yes it is NSDATA");
-//        }
-        
-//        NSString *jsonString = @"[{\"id\": \"1\", \"name\":\"Aaa\"}, {\"id\": \"2\", \"name\":\"Bbb\"}]";
-//        NSLog(@"string here %@",jsonString);
-//          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"failure block %@",error);
-//    }];
 }
+
 
 -(void) registerUser:(NSString *)UDID username:(NSString *)userName{
   
     NSUserDefaults *standardUserIDDefualts = [NSUserDefaults standardUserDefaults];
     NSString *UAID = [standardUserIDDefualts stringForKey:@"DeviceToken"];
     
+    NSString* finalUrl = [NSString stringWithFormat:@"%@%@",zCafeBaseUrl,@"register.json"];
+    
     NSMutableURLRequest *request = [NSMutableURLRequest
-                                    requestWithURL:[NSURL URLWithString:@"https://yipbb.corp.zynga.com/zcafe-api/register.json"]];
+                                    requestWithURL:[NSURL URLWithString:finalUrl]];
     
     NSLog(@"UAID is here %@",UAID);
     NSDictionary *requestData = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -74,8 +64,10 @@
 }
 
 -(void) placeOrder:(orderDetail *)orderDetail{
+    
+    NSString* finalUrl = [NSString stringWithFormat:@"%@%@",zCafeBaseUrl,@"orders.json"];
     NSMutableURLRequest *request = [NSMutableURLRequest
-                                    requestWithURL:[NSURL URLWithString:@"https://yipbb.corp.zynga.com/zcafe-api/orders.json"]];
+                                    requestWithURL:[NSURL URLWithString:finalUrl]];
     
     NSUserDefaults *standardUserIDDefualts = [NSUserDefaults standardUserDefaults];
     NSString *UDID = [standardUserIDDefualts stringForKey:@"DeviceUDID"];
@@ -99,8 +91,9 @@
 
 -(void)cancelOrder:(orderDetail *)orderDetail{
     
+    NSString* finalUrl = [NSString stringWithFormat:@"%@%@",zCafeBaseUrl,@"cancelOrder.json"];
     NSMutableURLRequest *request = [NSMutableURLRequest
-                                    requestWithURL:[NSURL URLWithString:@"https://yipbb.corp.zynga.com/zcafe-api/cancelOrder.json"]];
+                                    requestWithURL:[NSURL URLWithString:finalUrl]];
     
     NSUserDefaults *standardUserIDDefualts = [NSUserDefaults standardUserDefaults];
     NSString *UDID = [standardUserIDDefualts stringForKey:@"DeviceUDID"];
@@ -130,10 +123,9 @@
     NSUserDefaults *standardUserIDDefualts = [NSUserDefaults standardUserDefaults];
     NSString *UDID = [standardUserIDDefualts stringForKey:@"DeviceUDID"];
 
-    NSString *baseURL = @"https://yipbb.corp.zynga.com/zcafe-api/orders/";
-    NSString * stringURL = [NSString stringWithFormat:@"%@%@", baseURL,UDID];
-    
-    NSURL *url = [NSURL URLWithString:stringURL];
+    NSString* finalUrl = [NSString stringWithFormat:@"%@%@%@",zCafeBaseUrl,@"orders/",UDID];
+
+    NSURL *url = [NSURL URLWithString:finalUrl];
     NSString *result = [[NSString alloc] initWithContentsOfURL:url usedEncoding:encoding error:&error];
     NSData *jsonData = [result dataUsingEncoding:NSUTF8StringEncoding];
     //
@@ -150,10 +142,9 @@
     NSUserDefaults *standardUserIDDefualts = [NSUserDefaults standardUserDefaults];
     NSString *UDID = [standardUserIDDefualts stringForKey:@"DeviceUDID"];
 
-    NSString *baseURL = @"https://yipbb.corp.zynga.com/zcafe-api/menu/";
-    NSString * stringURL = [NSString stringWithFormat:@"%@%@", baseURL,UDID];
+    NSString* finalUrl = [NSString stringWithFormat:@"%@%@%@",zCafeBaseUrl,@"menu/",UDID];
+    NSURL *url = [NSURL URLWithString:finalUrl];
     
-    NSURL *url = [NSURL URLWithString:stringURL];
     NSString *result = [[NSString alloc] initWithContentsOfURL:url usedEncoding:encoding error:&error];
     NSData *jsonData = [result dataUsingEncoding:NSUTF8StringEncoding];
     //
@@ -170,7 +161,8 @@
     NSStringEncoding *encoding = NULL;
     NSError *error;
     
-    NSURL *url = [NSURL URLWithString:@"https://yipbb.corp.zynga.com/zcafe-api/queueCount.json"];
+    NSString* finalUrl = [NSString stringWithFormat:@"%@%@",zCafeBaseUrl,@"queueCount.json"];
+    NSURL *url = [NSURL URLWithString:finalUrl];
     NSString *result = [[NSString alloc] initWithContentsOfURL:url usedEncoding:encoding error:&error];
     NSLog(@"queucount %@",result);
     NSData *jsonData = [result dataUsingEncoding:NSUTF8StringEncoding];
@@ -188,10 +180,9 @@
     NSUserDefaults *standardUserIDDefualts = [NSUserDefaults standardUserDefaults];
     NSString *UDID = [standardUserIDDefualts stringForKey:@"DeviceUDID"];
     
-    NSString *baseURL = @"https://yipbb.corp.zynga.com/zcafe-api/connects/";
-    NSString * stringURL = [NSString stringWithFormat:@"%@%@", baseURL,UDID];
+    NSString* finalUrl = [NSString stringWithFormat:@"%@%@%@",zCafeBaseUrl,@"connects/",UDID];
+    NSURL *url = [NSURL URLWithString:finalUrl];
     
-    NSURL *url = [NSURL URLWithString:stringURL];
     NSLog(@"lets get this messages form zclient %@",UDID);
     NSString *result = [[NSString alloc] initWithContentsOfURL:url usedEncoding:encoding error:&error];
     NSLog(@"what si the result of zclient %@",result);
@@ -211,8 +202,9 @@
     NSString *UDID = [standardUserIDDefualts stringForKey:@"DeviceUDID"];
     NSString* userName = [standardUserIDDefualts stringForKey:@"UserName"];
     
+    NSString* finalUrl = [NSString stringWithFormat:@"%@%@",zCafeBaseUrl,@"connects.json"];
     NSMutableURLRequest *request = [NSMutableURLRequest
-                                    requestWithURL:[NSURL URLWithString:@"https://yipbb.corp.zynga.com/zcafe-api/connects.json"]];
+                                    requestWithURL:[NSURL URLWithString:finalUrl]];
     
     NSDictionary *requestData = [[NSDictionary alloc] initWithObjectsAndKeys:
                                  userName, @"name",
@@ -235,10 +227,8 @@
     NSUserDefaults *standardUserIDDefualts = [NSUserDefaults standardUserDefaults];
     NSString *UDID = [standardUserIDDefualts stringForKey:@"DeviceUDID"];
     
-    NSString *baseURL = @"https://yipbb.corp.zynga.com/zcafe-api/profileImage/";
-    NSString * stringURL = [NSString stringWithFormat:@"%@%@.json", baseURL,UDID];
-    
-    NSURL *url = [NSURL URLWithString:stringURL];
+    NSString* finalUrl = [NSString stringWithFormat:@"%@%@%@",zCafeBaseUrl,@"profileImage/",UDID];
+    NSURL *url = [NSURL URLWithString:finalUrl];
     NSMutableURLRequest *request = [NSMutableURLRequest
                                     requestWithURL:url];
     // COnvert Image to NSData
@@ -262,17 +252,6 @@
     
     // Get Response of Your Request
     NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-
-//    NSDictionary *requestData = [[NSDictionary alloc] initWithObjectsAndKeys:
-//                                 @"file", @"file",
-//                                 nil];
-//    NSData *postData = [NSJSONSerialization dataWithJSONObject:requestData options:0 error:&error];
-//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//
-//    [request setHTTPBody:postData];
-//    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-
-    
 }
 
 

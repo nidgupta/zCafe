@@ -68,6 +68,8 @@
 		98191BDE1830555400BA21D6 /* place_order.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 98191BDC1830555400BA21D6 /* place_order.jpg */; };
 		98191BE01830570F00BA21D6 /* Ikea_2EspressoCups.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 98191BDF1830570F00BA21D6 /* Ikea_2EspressoCups.JPG */; };
 		98191BE318306C2C00BA21D6 /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 98191BE218306C2C00BA21D6 /* THLabel.m */; };
+		98191BE618309F4500BA21D6 /* FXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 98191BE518309F4500BA21D6 /* FXLabel.m */; };
+		98191BE81830A02D00BA21D6 /* coffee_bg_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 98191BE71830A02D00BA21D6 /* coffee_bg_big.png */; };
 		982697AA1828232100AB466A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982697A91828232100AB466A /* Foundation.framework */; };
 		982697AC1828232100AB466A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982697AB1828232100AB466A /* CoreGraphics.framework */; };
 		982697AE1828232100AB466A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982697AD1828232100AB466A /* UIKit.framework */; };
@@ -204,6 +206,9 @@
 		98191BDF1830570F00BA21D6 /* Ikea_2EspressoCups.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Ikea_2EspressoCups.JPG; path = ../../../Downloads/Ikea_2EspressoCups.JPG; sourceTree = "<group>"; };
 		98191BE118306C2300BA21D6 /* THLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = THLabel.h; path = "../../../Downloads/THLabel-master/THLabel/THLabel.h"; sourceTree = "<group>"; };
 		98191BE218306C2C00BA21D6 /* THLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = THLabel.m; path = "../../../Downloads/THLabel-master/THLabel/THLabel.m"; sourceTree = "<group>"; };
+		98191BE418309F3800BA21D6 /* FXLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FXLabel.h; path = "../../../Downloads/FXLabel-master/FXLabel/FXLabel.h"; sourceTree = "<group>"; };
+		98191BE518309F4500BA21D6 /* FXLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FXLabel.m; path = "../../../Downloads/FXLabel-master/FXLabel/FXLabel.m"; sourceTree = "<group>"; };
+		98191BE71830A02D00BA21D6 /* coffee_bg_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coffee_bg_big.png; path = ../../../Downloads/coffee_bg_big.png; sourceTree = "<group>"; };
 		982697A61828232100AB466A /* zCafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zCafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		982697A91828232100AB466A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		982697AB1828232100AB466A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -431,6 +436,8 @@
 			isa = PBXGroup;
 			children = (
 				98191B65182E346F00BA21D6 /* NSString+JSMessagesView.m */,
+				98191BE518309F4500BA21D6 /* FXLabel.m */,
+				98191BE418309F3800BA21D6 /* FXLabel.h */,
 				98191B66182E346F00BA21D6 /* UIButton+JSMessagesView.h */,
 				98191BE118306C2300BA21D6 /* THLabel.h */,
 				98191BE218306C2C00BA21D6 /* THLabel.m */,
@@ -556,6 +563,7 @@
 			isa = PBXGroup;
 			children = (
 				98191BDF1830570F00BA21D6 /* Ikea_2EspressoCups.JPG */,
+				98191BE71830A02D00BA21D6 /* coffee_bg_big.png */,
 				98191BDB1830555400BA21D6 /* place-order1.png */,
 				98191BDC1830555400BA21D6 /* place_order.jpg */,
 				98191BD91830509400BA21D6 /* blank_profile.jpg */,
@@ -718,6 +726,7 @@
 				98191BB0182E358600BA21D6 /* bubble-classic-square-gray@2x.png in Resources */,
 				982697B41828232200AB466A /* InfoPlist.strings in Resources */,
 				981919A6182DC2F500BA21D6 /* aqua.png in Resources */,
+				98191BE81830A02D00BA21D6 /* coffee_bg_big.png in Resources */,
 				98191BC7182E35D900BA21D6 /* messageSent.aiff in Resources */,
 				98D2755E182B1623005DAD93 /* drawer.png in Resources */,
 				98191BAF182E358600BA21D6 /* bubble-classic-square-gray.png in Resources */,
@@ -821,6 +830,7 @@
 				98191B86182E34AA00BA21D6 /* JSDismissiveTextView.m in Sources */,
 				98D274D6182891F9005DAD93 /* MyFavoritesViewController.m in Sources */,
 				98191BE318306C2C00BA21D6 /* THLabel.m in Sources */,
+				98191BE618309F4500BA21D6 /* FXLabel.m in Sources */,
 				98191BD8182FA53900BA21D6 /* PhotoViewController.m in Sources */,
 				98191B90182E34CA00BA21D6 /* JSAvatarImageFactory.m in Sources */,
 				982697BA1828232200AB466A /* zCafeAppDelegate.m in Sources */,

@@ -54,7 +54,7 @@
     NSInteger orderNumber = [client getCurrentQueueCount];
     NSLog(@"print the order number %d",orderNumber);
     self.orderNumber.text = [@(orderNumber) stringValue];
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"coffee_bg.png"]];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"coffee_bg_init.png"]];
 }
 
 - (IBAction)orderConfirmation:(id)sender {
