@@ -7,13 +7,48 @@
 //
 
 #import "zCafeAppDelegate.h"
+#import "UAirship.h"
+#import "UAConfig.h"
+#import "UAPush.h"
+
 
 @implementation zCafeAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Populate AirshipConfig.plist with your app's info from https://go.urbanairship.com
+    // or set runtime properties here.
+    UAConfig *config = [UAConfig defaultConfig];
+//    
+//    // You can also programmatically override the plist values:
+      config.developmentAppKey = @"Hs3WxGH5SjKCwLidJDWyTw";
+    config.developmentAppSecret = @"Y6VCC2CBQVerYU6P2FqxZA";
+//    // etc.
+//    
+//    // Call takeOff (which creates the UAirship singleton)
+    [UAirship takeOff:config];
+    // Request a custom set of notification types
+    [UAPush shared].notificationTypes = (UIRemoteNotificationTypeBadge |
+                                         UIRemoteNotificationTypeSound |
+                                         UIRemoteNotificationTypeAlert |
+                                         UIRemoteNotificationTypeNewsstandContentAvailability);
     // Override point for customization after application launch.
     return YES;
+}
+
+-(void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+    const unsigned *tokenBytes = [deviceToken bytes];
+    NSString *hexToken = [NSString stringWithFormat:@"%08x%08x%08x%08x%08x%08x%08x%08x",
+                          ntohl(tokenBytes[0]), ntohl(tokenBytes[1]), ntohl(tokenBytes[2]),
+                          ntohl(tokenBytes[3]), ntohl(tokenBytes[4]), ntohl(tokenBytes[5]),
+                          ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
+    
+    NSLog(@"%@",hexToken);
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    [standardUserDefaults setObject:hexToken forKey:@"DeviceToken"];
+    NSLog(@"UAID is here %@",deviceToken);
+    [[UAPush shared] registerDeviceToken:deviceToken];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
